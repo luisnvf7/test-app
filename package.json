@@ -1,6 +1,6 @@
 {
   "name": "cicd-practice-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple app to practice CI/CD on AWS with version visibility",
   "main": "server.js",
   "scripts": {
