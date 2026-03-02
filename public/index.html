@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CICD Practice App</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main>
+    <h1>CICD Practice App</h1>
+    <p class="tagline">Deploy on AWS and see your version here</p>
+    <section class="version-card">
+      <span class="label">Version</span>
+      <span class="value" id="version">{{VERSION}}</span>
+      <span class="label">Build</span>
+      <span class="value" id="build">{{BUILD_ID}}</span>
+    </section>
+    <section class="endpoints">
+      <p><a href="/version">/version</a> — JSON version info</p>
+      <p><a href="/health">/health</a> — Health check (for ALB/ECS)</p>
+    </section>
+  </main>
+  <script>
+    fetch('/version')
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('version').textContent = data.version;
+        document.getElementById('build').textContent = data.buildId;
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>
